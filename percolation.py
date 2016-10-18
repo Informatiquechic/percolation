@@ -15,6 +15,11 @@ NEANT = -1
 couleurs = ['black', 'grey' , 'white', 'blue']
 valeurs  = [ NEANT ,  PIERRE,  VIDE  ,  EAU  ]
 
+def test(n, p, i):
+    E = matrice(n, p, i) # TODO: Générer la matrice ailleurs !
+    E = pluie(E)
+    return pertcolation (n, p, i) # mettre une matrice en argument 
+
 def percolation(n, p, T, i): # TODO: On devrait passer à percolation() uniquement un objet matrice à la place de n, p... qui devraient être des propriétés de l'objet matrice
     """ Indique s'il y a percolation ou pas """
     cmap = colors.ListedColormap(couleurs) # TODO: Relève du display, à metttre ailleurs.
@@ -23,8 +28,7 @@ def percolation(n, p, T, i): # TODO: On devrait passer à percolation() uniqueme
     pyplot.matshow([valeurs], 1, cmap=cmap, norm=norm)
     pyplot.pause(1)
 
-    E = matrice(n, p, i) # TODO: Générer la matrice ailleurs !
-    E = pluie(E)
+   
     for t in range(T):
         pyplot.matshow(E, 1, cmap=cmap, norm=norm) # TODO: Séparer la logique de display de la logique de génération (threads ?)
         pyplot.pause(.0001)
